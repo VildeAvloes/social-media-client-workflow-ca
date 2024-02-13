@@ -1,6 +1,6 @@
 {
   "name": "css-frameworks-ca",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Workflow CA Delivery",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,8 @@
   "lint-staged": {
     "*.js": [
       "prettier --write",
-      "eslint --fix"
+      "eslint --fix",
+      "eslint --cache --fix"
     ],
     "*.html": [
       "prettier --write"
