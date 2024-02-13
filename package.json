@@ -1,6 +1,6 @@
 {
   "name": "css-frameworks-ca",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Workflow CA Delivery",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "eslint": "^8.56.0",
     "husky": "^9.0.10",
     "lint-staged": "^15.2.2",
-    "live-server": "^1.2.2",
+    "live-server": "^1.1.0",
     "prettier": "^3.2.5",
     "sass": "^1.54.8"
   },
