@@ -8,19 +8,30 @@ describe("Login ", () => {
   });
 
   it("shows a login form when the login button is pressed", () => {
-    cy.get("#registerForm").find("button[data-auth=login]").click();
-    cy.get("#loginForm").should("be.visible");
+    cy.showLoginForm();
   });
 
   it("allows a valid and registered user to login", () => {
-    cy.get;
+    cy.showLoginForm();
+
+    cy.loginWithTestUser();
+
+    cy.isLoggedIn();
   });
 
   it("allows a valid user to log out", () => {
-    // logout functionality
+    cy.showLoginForm();
+
+    cy.loginWithTestUser();
+
+    cy.isLoggedIn();
+
+    cy.logout();
+
+    cy.isLoggedOut();
   });
 
-  it("the user can not log in with invalid credentials and an error message is displayer", () => {
-    // error functionality
-  });
+  //   it("the user can not log in with invalid credentials and an error message is displayer", () => {
+
+  //   });
 });
