@@ -11,7 +11,7 @@ describe("Login ", () => {
     cy.showLoginForm();
   });
 
-  it("allows a valid and registered user to login", () => {
+  it("allows a user with valid credentials to login", () => {
     cy.showLoginForm();
 
     cy.loginWithTestUser();
@@ -31,7 +31,11 @@ describe("Login ", () => {
     cy.isLoggedOut();
   });
 
-  //   it("the user can not log in with invalid credentials and an error message is displayer", () => {
+  it("the user can not log in with invalid credentials and an error message is displayer", () => {
+    cy.showLoginForm();
 
-  //   });
+    cy.loginWithInvalidCredentials();
+
+    cy.showErrorAlertMessage();
+  });
 });
