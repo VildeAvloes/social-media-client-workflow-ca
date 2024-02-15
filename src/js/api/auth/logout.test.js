@@ -3,7 +3,7 @@ import localStorageMock from "../../storage/localStorage.mock.js";
 
 global.localStorage = localStorageMock;
 
-const profileCredentials = {
+const PROFILE_CREDENTIALS = {
   email: "profile@test.com",
   name: "ProfileName",
   avatar: "profileAvatar.img",
@@ -16,8 +16,8 @@ describe("Logout", () => {
   });
 
   it("removes token and profile from the localStorage", async () => {
-    localStorageMock.setItem("token", profileCredentials.accessToken);
-    localStorageMock.setItem("profile", JSON.stringify(profileCredentials));
+    localStorageMock.setItem("token", PROFILE_CREDENTIALS.accessToken);
+    localStorageMock.setItem("profile", JSON.stringify(PROFILE_CREDENTIALS));
 
     console.log("The token after login:", localStorageMock.getItem("token"));
     console.log(

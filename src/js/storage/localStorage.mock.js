@@ -1,10 +1,15 @@
 export default {
-  setItem: jest.fn((key, value) => {
-    localStorage[key] = value;
-  }),
-  getItem: jest.fn((key) => localStorage[key] || null),
-  removeItem: jest.fn((key) => delete localStorage[key]),
-  clear: jest.fn(function () {
-    Object.keys(this).forEach((key) => delete localStorage[key]);
-  }),
+  data: {},
+  setItem: function (key, value) {
+    this.data[key] = value.toString();
+  },
+  getItem: function (key) {
+    return this.data[key] || null;
+  },
+  removeItem: function (key) {
+    delete this.data[key];
+  },
+  clear: function () {
+    this.data = {};
+  },
 };
