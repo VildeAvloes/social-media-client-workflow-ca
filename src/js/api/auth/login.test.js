@@ -3,20 +3,16 @@ import localStorageMock from "../../storage/localStorage.mock.js";
 
 global.localStorage = localStorageMock;
 
-const validEmailCredentials = "validEmail@noroff.no";
-const validPasswordCredentials = "ValidPassword1234";
-
 const validCredentials = {
-  email: validEmailCredentials,
-  password: validPasswordCredentials,
+  email: "validEmail@noroff.no",
+  password: "ValidPassword1234",
+  avatar: "validAvatar.img",
+  accessToken: "validAccessToken",
 };
 
-const invalidEmailCredentials = "invalidlEmail@email.com";
-const invalidPassword = "InvalidPassword1234";
-
 const invalidCredentials = {
-  email: invalidEmailCredentials,
-  password: invalidPassword,
+  email: "invalidlEmail@email.com",
+  password: "InvalidPassword1234",
 };
 
 function loginSuccessful() {
@@ -38,14 +34,27 @@ function loginFailure() {
 }
 
 describe("Login", () => {
+  //   beforeEach(() => {
+  //     localStorageMock.clear();
+  //   });
+
   it("Stores a token when provided with valid credentials", async () => {
     global.fetch = jest.fn(() => loginSuccessful());
-    const profileData = await login(validCredentials);
-    await expect(profileData).toEqual(validCredentials);
+    await login(validCredentials.email, validCredentials.password);
+
+    const storedToken = localStorage.getItem("token");
+    expect(storedToken).toBeTruthy();
+    console.log("Stored token after login:", storedToken);
   });
 
   it("throws an error when provided with invalid credentials and login fails", async () => {
     global.fetch = jest.fn(() => loginFailure());
-    await expect(login(invalidCredentials)).rejects.toThrow("Login failed");
+    await expect(
+      login(invalidCredentials.email, invalidCredentials.password),
+    ).rejects.toThrow("Login failed");
+
+    const unStoredToken = localStorageMock.getItem("token");
+    expect(unStoredToken).toBeNull();
+    console.log("The stored token after failed to login login", unStoredToken);
   });
 });
