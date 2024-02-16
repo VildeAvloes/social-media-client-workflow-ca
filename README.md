@@ -90,3 +90,7 @@ npm run test-e2e-cli
 - Husky
 
 ## Badges
+
+[![Automated Unit Testing](https://github.com/VildeAvloes/social-media-client-workflow-ca/actions/workflows/unit-test.yml/badge.svg)](https://github.com/VildeAvloes/social-media-client-workflow-ca/actions/workflows/unit-test.yml)
+
+[![Automated E2E Testing](https://github.com/VildeAvloes/social-media-client-workflow-ca/actions/workflows/e2e-test.yml/badge.svg)](https://github.com/VildeAvloes/social-media-client-workflow-ca/actions/workflows/e2e-test.yml)
