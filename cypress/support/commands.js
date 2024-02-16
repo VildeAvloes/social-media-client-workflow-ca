@@ -24,8 +24,6 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import { Cypress, cy } from "cypress";
-
 Cypress.Commands.add("visitHome", () => {
   cy.visit("/");
   cy.wait(500);
