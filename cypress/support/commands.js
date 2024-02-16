@@ -32,22 +32,18 @@ Cypress.Commands.add("visitHome", () => {
 Cypress.Commands.add("showLoginForm", () => {
   cy.get("#registerForm").find("button[data-auth=login]").click();
   cy.get("#loginForm").should("be.visible");
-  cy.wait(500);
+  cy.wait(1000);
 });
 
 Cypress.Commands.add("login", (email, password) => {
   cy.get("#loginForm").find("input[name=email]").type(email);
   cy.get("#loginForm").find("input[name=password]").type(password);
-  cy.get("#loginForm").find("button[name=submit]").click();
+  cy.get("#loginForm").find("button[type=submit]").click();
   cy.wait(1500);
 });
 
 Cypress.Commands.add("loginWithTestUser", () => {
-  cy.fixture(
-    "test-user".then((user) => {
-      cy.login(user.email, user.password);
-    }),
-  );
+  cy.login(Cypress.env("email"), Cypress.env("password"));
 });
 
 Cypress.Commands.add("isLoggedIn", () => {
@@ -63,6 +59,26 @@ Cypress.Commands.add("logout", () => {
 
 Cypress.Commands.add("isLoggedOut", () => {
   cy.window().then((win) => {
-    cy.expect(win.localStorage.getItem("token")).to.be.null;
+    expect(win.localStorage.getItem("token")).to.be.null;
+
+    cy.location().should((location) => {
+      expect(location.pathname).to.equal("/");
+    });
+  });
+});
+
+Cypress.Commands.add("loginWithInvalidCredentials", () => {
+  cy.login(
+    cy.get("#loginForm").find("input[name=email]").type("invalidUser@test.no"),
+  );
+  cy.get("#loginForm").find("input[name=password]").type("invalidPassword1234");
+  cy.get("#loginForm").find("button[type=submit]").click();
+});
+
+Cypress.Commands.add("showErrorMessage", () => {
+  cy.on("window:alert", (message) => {
+    expect(message).to.equal(
+      "Either your username was not found or your password is incorrect",
+    );
   });
 });

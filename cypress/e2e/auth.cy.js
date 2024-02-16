@@ -36,6 +36,6 @@ describe("Login ", () => {
 
     cy.loginWithInvalidCredentials();
 
-    cy.showErrorAlertMessage();
+    cy.showErrorMessage();
   });
 });
