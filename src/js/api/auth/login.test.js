@@ -4,9 +4,9 @@ import localStorageMock from "../../storage/localStorage.mock.js";
 global.localStorage = localStorageMock;
 
 const validProfileCredentials = {
-  email: process.env.USER_EMAIL,
-  password: process.env.USER_PASSWORD,
-  avatar: process.env.USER_AVATAR,
+  email: "workflow@stud.noroff.no",
+  password: "test1234",
+  avatar: "https://picsum.photos/200/300",
   accessToken: "validAccessToken",
 };
 
