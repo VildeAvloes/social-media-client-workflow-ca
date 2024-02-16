@@ -2,13 +2,12 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "jest": true,
     "node": true
   },
   "extends": "eslint:recommended",
   "overrides": [
     {
-      "files": ["**/*.cy.js"],
+      "files": ["**/*.cy.js", "cypress.config.js", "cypress/**"],
       "env": { "cypress/globals": true },
       "plugins": ["cypress"],
       "extends": ["plugin:cypress/recommended"],
@@ -18,7 +17,7 @@
       }
     },
     {
-      "files": ["**/*.test.js", "**/*.mock.js"],
+      "files": ["**/*.test.js"],
       "env": { "jest": true },
       "plugins": ["jest"],
       "extends": ["plugin:jest/recommended"],
