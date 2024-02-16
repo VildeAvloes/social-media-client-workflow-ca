@@ -10,43 +10,73 @@ Make sure that you have node installed before cloning and installing the repo.
 
 1. Clone the repo
 
-`git clone git@github.com:VildeAvloes/social-media-client-workflow-ca.git`
+```
+git clone git@github.com:VildeAvloes/social-media-client-workflow-ca.git
+```
 
 2. Navigate to project folder:
 
-`cd workflow-social-media-client-workflow-ca`
+```
+cd workflow-social-media-client-workflow-ca
+```
 
 3. Install dependencies using npm
 
-`npm install`
+```
+npm install
+```
 
 ## Usage
 
 When installed you can use the following commands to run the application
 
 **Start:** Launches the page in web browser and watch for changes in the scss
-`npm run start`
+
+```
+npm run start
+```
 
 **Build:** Compiles the SCSS to CSS
-`npm run build`
+
+```
+npm run build
+```
 
 **Format:** Formats files using Prettier
-`npm run format`
+
+```
+npm run format
+```
 
 **Lint:** Lints files using ESLint
-`npm run lint`
+
+```
+npm run lint
+```
 
 **Lint-fix:** Automatically lints and fixes linting issues in files using ESLint
-`npm run lint-fix`
+
+```
+npm run lint-fix
+```
 
 **Test:** Runs automated unit tests and e2e test using Jest and Cypress
-`npm run test`
+
+```
+npm run test
+```
 
 **Test-Unit:** Runs automated unit tests using Jest
-`npm run test-unit`
+
+```
+npm run test-unit
+```
 
 **Test End-to-End:** Runs automated e2e test using Cypress
-`npm run test-e2e-cli`
+
+```
+npm run test-e2e-cli
+```
 
 ## Technologies used
 
