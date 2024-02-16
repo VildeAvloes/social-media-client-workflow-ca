@@ -3,14 +3,14 @@ import localStorageMock from "../../storage/localStorage.mock.js";
 
 global.localStorage = localStorageMock;
 
-const VALID_PROFILE_CREDENTIALS = {
-  email: "validEmail@noroff.no",
-  password: "ValidPassword1234",
-  avatar: "validAvatar.img",
+const validProfileCredentials = {
+  email: process.env.USER_EMAIL,
+  password: process.env.USER_PASSWORD,
+  avatar: process.env.USER_AVATAR,
   accessToken: "validAccessToken",
 };
 
-const INVALID_PROFILE_CREDENTIALS = {
+const invalidProfileCredentials = {
   email: "invalidlEmail@email.com",
   password: "InvalidPassword1234",
 };
@@ -20,13 +20,13 @@ const loginResponse = {
     ok: true,
     status: 200,
     statusText: "Login successful",
-    json: () => Promise.resolve(VALID_PROFILE_CREDENTIALS),
+    json: () => Promise.resolve(validProfileCredentials),
   },
   failure: {
     ok: false,
     status: 404,
     statusText: "Login failed",
-    json: () => Promise.resolve(INVALID_PROFILE_CREDENTIALS),
+    json: () => Promise.resolve(invalidProfileCredentials),
   },
 };
 
@@ -38,8 +38,8 @@ describe("Login", () => {
   it("Stores a token when provided with valid credentials", async () => {
     global.fetch = jest.fn(() => loginResponse.successful);
     await login(
-      VALID_PROFILE_CREDENTIALS.email,
-      VALID_PROFILE_CREDENTIALS.password,
+      validProfileCredentials.email,
+      invalidProfileCredentials.password,
     );
 
     const storedToken = localStorage.getItem("token");
@@ -53,8 +53,8 @@ describe("Login", () => {
     global.fetch = jest.fn(() => loginResponse.failure);
     await expect(
       login(
-        INVALID_PROFILE_CREDENTIALS.email,
-        INVALID_PROFILE_CREDENTIALS.password,
+        invalidProfileCredentials.email,
+        invalidProfileCredentials.password,
       ),
     ).rejects.toThrow(loginResponse.failure.statusText);
 
