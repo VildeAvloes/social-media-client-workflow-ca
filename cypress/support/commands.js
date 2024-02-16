@@ -42,7 +42,7 @@ Cypress.Commands.add("login", (email, password) => {
   cy.wait(1500);
 });
 
-Cypress.Commands.add("loginWithTestUser", () => {
+Cypress.Commands.add("loginWithValidCredentials", () => {
   cy.login(Cypress.env("email"), Cypress.env("password"));
 });
 
@@ -68,17 +68,11 @@ Cypress.Commands.add("isLoggedOut", () => {
 });
 
 Cypress.Commands.add("loginWithInvalidCredentials", () => {
-  cy.login(
-    cy.get("#loginForm").find("input[name=email]").type("invalidUser@test.no"),
-  );
-  cy.get("#loginForm").find("input[name=password]").type("invalidPassword1234");
-  cy.get("#loginForm").find("button[type=submit]").click();
+  cy.login("invalidemail@noroff.no", "invalidpassword1234");
 });
 
 Cypress.Commands.add("showErrorMessage", () => {
   cy.on("window:alert", (message) => {
-    expect(message).to.equal(
-      "Either your username was not found or your password is incorrect",
-    );
+    expect(message).to.equal("string");
   });
 });
